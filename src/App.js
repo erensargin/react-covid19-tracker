@@ -5,16 +5,22 @@ import CountryPicker from './components/CountryPicker/CountryPicker';
 
 import styles from './App.module.css'
 import { fetchData } from './api';
+import { useEffect, useState } from 'react';
+
 
 function App() {
 
-  const data = fetchData();
-  console.log(data)
+  const [data, setData] = useState([])
 
+  useEffect( async () => {
+    setData(await fetchData()); 
+  }, [])
+
+  
   return (
     <div className={styles.container}>
-      <h1>App</h1>
-      <Cards/>
+      {data.confirmed ? <Cards data={data}/> : "no data"}
+      
       <Chart/>
       <CountryPicker/>
     </div>

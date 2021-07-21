@@ -14,6 +14,7 @@ export const fetchData = async () => {
             deaths,
             lastUpdate
         }
+        console.log(modifiedData)
 
         return modifiedData;
 
